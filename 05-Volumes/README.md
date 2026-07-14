@@ -1,4 +1,4 @@
-## Docker Volumes
+## Now, Docker Volumes
 
 We have three types of Docker volumes:
 
