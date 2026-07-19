@@ -5,18 +5,17 @@ set -e
 
 mysqld_safe &
 
-y=0
-pip="|"
-brack1="["
-brack2="]"
-
-while [ "$y" -lt 20 ];
+retry=1
+while [ "$retry" -lt 30 ]; 
 do
-	sleep 1
-	#echo "${brack1} ${pip} ${brack2}"
-	echo "waiting ..."
-	y=$((y + 1))
-done 
+    if mariadb-admin ping --silent; then
+        echo "MariaDB started successfully!"
+        break
+    fi
+    echo "waiting ..."
+    sleep 1
+    retry=$((retry + 1))
+done
 
 echo "MariaDB started successfully!"
 
