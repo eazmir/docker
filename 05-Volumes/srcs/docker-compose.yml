@@ -1,0 +1,33 @@
+services:
+  nginx:
+    build: requirements/nginx
+    container_name: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - nginx
+    volumes:
+      - "$p:/var/www/html"
+
+  php-fpm:
+    build: requirements/php-fpm
+    container_name: php-fpm
+    ports:
+      - "9000:9000"
+    networks:
+      - php-fpm
+    volumes:
+      - "$p:/var/www/html"
+
+  mariadb:
+    build: requirements/mariadb
+    container_name: mariadb
+    ports:
+      - "5000:5000"
+    networks:
+      - mariadb
+
+networks:
+  nginx:
+  php-fpm:
+  mariadb:
