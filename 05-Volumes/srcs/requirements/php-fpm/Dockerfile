@@ -12,3 +12,4 @@ RUN sed -i 's|listen = /run/php/php8.4-fpm.sock|listen = 9000|' /etc/php/8.4/fpm
 COPY script.sh script.sh
 
 CMD ["bash","script.sh"]
+

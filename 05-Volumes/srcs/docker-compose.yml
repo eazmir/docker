@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:80"
     networks:
-      - nginx
+      - app-network
     volumes:
       - "$p:/var/www/html"
 
@@ -15,7 +15,8 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - php-fpm
+      - app-network
+      - mariadb-network
     volumes:
       - "$p:/var/www/html"
 
@@ -25,9 +26,8 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - mariadb
+      - mariadb-network
 
 networks:
-  nginx:
-  php-fpm:
-  mariadb:
+  app-network:
+  mariadb-network:
